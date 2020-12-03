@@ -8,7 +8,7 @@ for (x in input$entry){
   }
 }
 
-#Part 2
+# Part 2
 for (x in input$entry){
   for(y in input$entry) {
     for(z in input$entry)
@@ -17,5 +17,4 @@ for (x in input$entry){
     }
   }
 }
-
 
