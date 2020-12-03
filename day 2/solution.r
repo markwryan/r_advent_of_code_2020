@@ -2,7 +2,7 @@ install.packages("tidyverse")
 library(tidyr)
 library(dplyr)
 library(stringr)
-                         
+  
 # Read and clean up the data
 data <- read.table("input.txt", col.names = c("range", "requirement", "password")) %>%
   mutate(requirement = substr(requirement,1,1)) %>%
