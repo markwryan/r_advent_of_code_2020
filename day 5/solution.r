@@ -20,9 +20,7 @@ data <- read.csv("input.csv", header=FALSE) %>%
   mutate(column = str_replace_all(column, "L", "0")) %>%
   mutate(column = str_replace_all(column, "R", "1")) %>%
   mutate(row = str_split(row, boundary("character"))) %>%
-  mutate(column = str_split(column, boundary("character")))
-
-data <- data %>%
+  mutate(column = str_split(column, boundary("character"))) %>%
   rowwise() %>%
   mutate(row_dec = as_decimal(row)) %>%
   mutate(column_dec = as_decimal(column)) %>%
@@ -33,4 +31,3 @@ print(max(data$seat_id))
 compare <- tibble(seat_id=1:max(data$seat_id))
 compare <- compare[-data$seat_id,]
 print(compare)
-
