@@ -28,7 +28,7 @@ find_bags <- function(bag_type) {
         parent_bag <- find_bags(parent$X1)
         if(!is.null(parent_bag)) {
           step_results <- step_results %>%
-           add_row(find_bags(parent$X1))
+           add_row(parent_bag)
         }
       }
     }
@@ -39,9 +39,6 @@ find_bags <- function(bag_type) {
 }
 
 # Part 1
-# This takes forever to complete, obviously.
 res <- find_bags("shiny gold")
 print(length(unique(res$X1)))
 
-  
- 
