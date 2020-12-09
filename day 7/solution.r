@@ -35,10 +35,30 @@ find_bags <- function(bag_type) {
     return(step_results)
   }
   return()
-  
 }
 
 # Part 1
 res <- find_bags("shiny gold")
 print(length(unique(res$X1)))
 
+# Part 2
+bags_allowed <- bags_allowed %>% mutate(count  = as.numeric(count))
+
+count_contained_bags <- function(mult, bag) {
+  inside <- filter(bags_allowed, X1 == bag$inside_bag)
+  total <- total + (mult * bag$count)
+  mult <- mult * bag$count
+  if(count(inside) > 0) {
+    for(i in 1:nrow(inside)) {
+      total <- total + count_contained_bags(mult, inside[i,])
+    }
+  }
+  return(total)
+}
+
+shiny_gold <- filter(bags_allowed, X1 == "shiny gold")
+total <- 0
+for(i in 1:nrow(shiny_gold)) {
+  total <- total +  count_contained_bags(1, shiny_gold[i,])
+}
+print(total)
